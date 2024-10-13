@@ -8,16 +8,15 @@ public class Main {
 				+ "It features a comfortable double bed, a small desk for working or writing, and a "
 				+ "closet for your belongings. The room also has a private bathroom with a shower.";
 		Double amount = 50000.00; 
-		int roomNumber = 10;
+		int roomNumber = 105;
 	
 		Room room = new Room(describeRoom,roomNumber, amount);
-		room.setRoomDetails();
+		//room.setRoomDetails();
 		
-		System.out.println(room.getRoomDescription());
+//		room.publish();
 		
-		room.publish();
-		
-
+		HotelRoom roomGUI = new HotelRoom();
+		roomGUI.setVisible(true);
 
 	}
 
