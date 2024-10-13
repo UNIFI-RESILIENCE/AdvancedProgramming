@@ -1,6 +1,6 @@
 package hotel;
 
-import java.awt.EventQueue;
+//import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -10,7 +10,6 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
-import java.awt.Color;
 import javax.swing.JSeparator;
 
 public class HotelRoom extends JFrame {
@@ -54,34 +53,18 @@ public class HotelRoom extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lbFName = new JLabel("Room Number");
-		lbFName.setBounds(31, 33, 149, 29);
-		contentPane.add(lbFName);
+		JLabel lbRoomNumber = new JLabel("Room Number");
+		lbRoomNumber.setBounds(31, 33, 149, 29);
+		contentPane.add(lbRoomNumber);
 		
 		txtRoomNumber = new JTextField();
 		txtRoomNumber.setBounds(31, 58, 149, 45);
 		contentPane.add(txtRoomNumber);
 		txtRoomNumber.setColumns(10);
 		
-		JButton btnOkay = new JButton("Publish Room");
-		btnOkay.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Integer roomNumber = Integer.parseInt(txtRoomNumber.getText()) ;
-				
-				Double amount = Double.parseDouble(txtRoomAmount.getText());
-				
-				String roomDescription = txtRoomDescription.getText();
-				
-				Room saveRoom = new Room(roomDescription, roomNumber, amount);
-				saveRoom.publish();
-			}
-		});
-		btnOkay.setBounds(31, 261, 624, 45);
-		contentPane.add(btnOkay);
-		
-		JLabel lblLastName = new JLabel("Amount");
-		lblLastName.setBounds(31, 140, 149, 29);
-		contentPane.add(lblLastName);
+		JLabel lbAmount = new JLabel("Amount");
+		lbAmount.setBounds(31, 140, 149, 29);
+		contentPane.add(lbAmount);
 		
 		txtRoomAmount = new JTextField();
 		txtRoomAmount.setBounds(31, 171, 149, 45);
@@ -104,5 +87,24 @@ public class HotelRoom extends JFrame {
 		JSeparator separator = new JSeparator();
 		separator.setBounds(31, 318, 624, 10);
 		contentPane.add(separator);
+		
+		JButton btnPublish = new JButton("Publish Room");
+		btnPublish.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Integer roomNumber = Integer.parseInt(txtRoomNumber.getText()) ;
+				
+				Double amount = Double.parseDouble(txtRoomAmount.getText());
+				
+				String roomDescription = txtRoomDescription.getText();
+				
+				Room saveRoom = new Room(roomDescription, roomNumber, amount);
+				String savedDetails = saveRoom.publish();
+				System.out.println(savedDetails);
+				lbRoomDetails.setText(savedDetails);
+				
+			}
+		});
+		btnPublish.setBounds(31, 261, 624, 45);
+		contentPane.add(btnPublish);
 	}
 }
