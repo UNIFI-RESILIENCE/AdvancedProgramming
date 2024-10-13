@@ -11,6 +11,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import javax.swing.JSeparator;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.JTextPane;
 
 public class HotelRoom extends JFrame {
 
@@ -20,7 +23,8 @@ public class HotelRoom extends JFrame {
 	private JTextField txtRoomAmount;
 	private JTextArea txtRoomDescription;
 	private JLabel lblDescription;
-	private JLabel lbRoomDetails;
+	private JScrollPane scrollPane;
+	private JScrollPane scrollPane_1;
 
 	/**
 	 * Launch the application.
@@ -42,7 +46,6 @@ public class HotelRoom extends JFrame {
 	 * Create the frame.
 	 */
 	public HotelRoom() {
-		setResizable(false);
 		
 		setTitle("Publish Room");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -71,22 +74,33 @@ public class HotelRoom extends JFrame {
 		contentPane.add(txtRoomAmount);
 		txtRoomAmount.setColumns(10);
 		
+		scrollPane_1 = new JScrollPane();
+		scrollPane_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane_1.setBounds(214, 58, 441, 158);
+		contentPane.add(scrollPane_1);
+		
 		txtRoomDescription = new JTextArea();
+		scrollPane_1.setViewportView(txtRoomDescription);
+		txtRoomDescription.setRows(1000);
+		txtRoomDescription.setWrapStyleWord(true);
 		txtRoomDescription.setLineWrap(true);
-		txtRoomDescription.setBounds(214, 58, 441, 158);
-		contentPane.add(txtRoomDescription);
 		
 		lblDescription = new JLabel("Description");
 		lblDescription.setBounds(214, 30, 94, 29);
 		contentPane.add(lblDescription);
 		
-		lbRoomDetails = new JLabel("");
-		lbRoomDetails.setBounds(31, 340, 624, 204);
-		contentPane.add(lbRoomDetails);
-		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(31, 318, 624, 10);
 		contentPane.add(separator);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(31, 346, 624, 219);
+		contentPane.add(scrollPane);
+		
+		JTextPane lbRoomDetails = new JTextPane();
+		lbRoomDetails.setEditable(false);
+		scrollPane.setViewportView(lbRoomDetails);
+		
 		
 		JButton btnPublish = new JButton("Publish Room");
 		btnPublish.addActionListener(new ActionListener() {
@@ -106,5 +120,8 @@ public class HotelRoom extends JFrame {
 		});
 		btnPublish.setBounds(31, 261, 624, 45);
 		contentPane.add(btnPublish);
+		
+
+
 	}
 }
